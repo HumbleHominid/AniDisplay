@@ -1,0 +1,13 @@
+{
+	"name": "AniDisplay",
+	"version": "0.0.0",
+	"author": "Michael Fryer",
+	"devDependencies": {
+		"node-sass": "^4.7.2",
+		"reload": "^2.2.2",
+		"watchify": "^3.10.0"
+	},
+	"scripts": {
+		"start": "node script.js"
+	}
+}
