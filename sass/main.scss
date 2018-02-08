@@ -1,0 +1,97 @@
+// Best typography for all the browsers
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji"
+        "Segoe UI Emoji";
+// Variable for dealing with spacing
+$spacer: 1rem;
+
+@mixin full-width {
+    left: 0px;
+    right: 0px;
+}
+
+// Templating the web page
+body {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: [header] auto auto 1fr [footer] auto;
+    font-family: $font-family-sans-serif;
+}
+
+header {
+    @include full-width;
+
+    grid-row-start: header;
+}
+
+footer {
+    @include full-width;
+
+    display: flex;
+    justify-content: space-around;
+    grid-row-start: footer;
+}
+
+// Some Typography stuff
+// Display css for large impactful things
+@for $i from 1 through 4 {
+    .display-#{$i} {
+        // Math for 6rem at 1 and 3.5 rem at 4
+        font-size: #{-0.83 * $i + 6.83}rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+}
+
+// Want small to be global 80% size of parent
+small {
+    font-size: 80%;
+}
+
+// A grey for the muted text
+.text-muted {
+    color: #a2a2a2;
+}
+
+// Description list things
+dl {
+    dt {
+        font-weight: 700;
+    }
+    dd {
+        margin-bottom: $spacer / 2;
+        margin-left: 0;
+    }
+}
+
+// Spacing things
+// Define lists for generating spacing classes
+$spacing_values: (0, 0), (1, 0.25), (2, 0.5), (3, 1), (4, 1.5), (5, 3);
+$spacing_properties: (margin, m), (padding, p);
+$spacing_directions: (top, t), (right, r), (bottom, b), (left, l);
+$spacing_composite_directions: ((left, right), x), ((top, bottom), y);
+
+// Make css classes from the lists defined above
+@each $css_prop, $css_prop_short in $spacing_properties {
+    @each $class_id, $factor in $spacing_values {
+        // The value to apply to the style
+        $value: $factor * $spacer;
+
+        .#{$css_prop_short}-#{$class_id} {
+            #{$css_prop}: $value;
+        }
+
+        @each $direction_list, $discriptor  in $spacing_composite_directions {
+            .#{$css_prop_short}#{$discriptor}-#{$class_id} {
+                @each $direction in $direction_list {
+                    #{$css_prop}-#{$direction}: $value;
+                }
+            }
+        }
+        @each $loc, $loc_short in $spacing_directions {
+            .#{$css_prop_short}#{$loc_short}-#{$class-id} {
+                #{$css-prop}-#{$loc}: $value;
+            }
+        }
+    }
+}
