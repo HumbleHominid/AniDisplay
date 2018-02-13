@@ -77,17 +77,21 @@ $spacing_composite_directions: ((left, right), x), ((top, bottom), y);
         // The value to apply to the style
         $value: $factor * $spacer;
 
+        // CSS class for all sides
         .#{$css_prop_short}-#{$class_id} {
             #{$css_prop}: $value;
         }
 
-        @each $direction_list, $discriptor  in $spacing_composite_directions {
+        // CSS class for composite diretions e.g. top and bottom
+        @each $direction_list, $discriptor in $spacing_composite_directions {
             .#{$css_prop_short}#{$discriptor}-#{$class_id} {
                 @each $direction in $direction_list {
                     #{$css_prop}-#{$direction}: $value;
                 }
             }
         }
+
+        // CSS class for spacing a certain direction
         @each $loc, $loc_short in $spacing_directions {
             .#{$css_prop_short}#{$loc_short}-#{$class-id} {
                 #{$css-prop}-#{$loc}: $value;

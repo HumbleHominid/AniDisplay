@@ -60,3 +60,6 @@ typings/
 # vim
 *.swp
 *~
+
+# dist
+dist

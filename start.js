@@ -1,7 +1,9 @@
 const cp = require('child_process');
 const commands= [
-	"node-sass sass/main.scss app.css",
-	"node-sass -wr sass/main.scss app.css",
+        // Note that I run node-sass twice. if you start in watch it only
+        // compiles new changes and does not recomplie
+	"node-sass sass/main.scss app.css --output-style expanded",
+	"node-sass -wr sass/main.scss app.css --output-style expanded",
 	"watchify js/main.js -o app.js",
 	"reload -bd"
 ];
