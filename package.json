@@ -1,15 +1,22 @@
 {
   "name": "AniDisplay",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/HumbleHominid/AniDisplay.git"
+  },
   "author": "Michael Fryer",
   "devDependencies": {
+    "babelify": "^8.0.0",
     "browserify": "^16.0.0",
     "node-sass": "^4.7.2",
     "reload": "^2.2.2",
-    "watchify": "^3.10.0"
+    "watchify": "^3.10.0",
+    "babel-core": "^6.26.0"
   },
   "scripts": {
     "start": "node start.js",
     "build": "node build.js"
-  }
+  },
+  "license": "MIT"
 }
