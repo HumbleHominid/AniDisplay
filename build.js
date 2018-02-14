@@ -34,6 +34,9 @@ else {
 
     build();
 }
+//--------------
+//- 'Main' End -
+//--------------
 
 //------------------------
 //- Functions Below Here -
@@ -53,7 +56,8 @@ function build() {
     // Compile the source stuff to dist
     compileCodeBase();
 }
-// Recursively deletes all dir files
+
+// Recursively deletes all dir files synchronously
 function deleteDirFiles(dir = '.some_dir') {
     // Get all the file names
     let files = fs.readdirSync(dir);
@@ -75,21 +79,21 @@ function deleteDirFiles(dir = '.some_dir') {
 }
 
 // If dir, copy files. If file, copy file
-function copyToDist(source = '.', targetDir = DIST_PATH) {
+function copyToDist(source = '.') {
     fs.stat(source, (err, stats) => {
         if (err) throw err;
 
         // If path is file
         if (stats.isFile()) {
             // Copy file
-            fs.copyFile(source, path.join(targetDir, source), err => {
+            fs.copyFile(source, path.join(DIST_PATH, source), err => {
                 if (err) throw err;
             });
         }
         // If path is directory recursively call yourself for each file in the
         // directory
         else if (stats.isDirectory()) {
-            fs.mkdirSync(path.join(targetDir, source));
+            fs.mkdirSync(path.join(DIST_PATH, source));
 
             fs.readdir(source, (error, files) => {
                 if (error) throw error;
