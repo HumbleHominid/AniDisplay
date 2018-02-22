@@ -4,7 +4,11 @@
 //-------------------
 //- Module Requires -
 //-------------------
+<<<<<<< HEAD
 // Require the necessary packages for copying files
+=======
+// Require the necessray packages for copying files
+>>>>>>> a3240cabe7ea46ec0f574c4a78cdecede2516964
 const cp = require('child_process'); // For creating processes
 const fs = require('fs'); // For accessing the file system
 const path = require('path'); // For making paths and stuff
@@ -19,7 +23,11 @@ const babelify = require('babelify'); // For dealing with ES6/7 >> ES5
 //----------------------
 // directory paths
 const DIST_PATH = 'dist'; // for where to store the distribution
+<<<<<<< HEAD
 const PUBLIC_PATH = 'assets'; // where to look for assets and stuff
+=======
+const PUBLIC_PATH = 'public'; // where to look for assets and stuff
+>>>>>>> a3240cabe7ea46ec0f574c4a78cdecede2516964
 
 //----------------
 //- 'Main' Start -
@@ -49,15 +57,23 @@ function build() {
     copyToDist('index.html');
 
     // If public stuff exists copy it over
+<<<<<<< HEAD
     if (fs.existsSync(PUBLIC_PATH)) {
         copyToDist(PUBLIC_PATH);
+=======
+    if (fs.existsSync('public')) {
+        copyToDist('public');
+>>>>>>> a3240cabe7ea46ec0f574c4a78cdecede2516964
     }
 
     // Compile the source stuff to dist
     compileCodeBase();
+<<<<<<< HEAD
 
     // Copy all the dependencies to dist
     copyDependencies();
+=======
+>>>>>>> a3240cabe7ea46ec0f574c4a78cdecede2516964
 }
 
 // Recursively deletes all dir files synchronously
@@ -97,10 +113,17 @@ function copyToDist(source = '.') {
         // directory
         else if (stats.isDirectory()) {
             fs.mkdirSync(path.join(DIST_PATH, source));
+<<<<<<< HEAD
 
             fs.readdir(source, (error, files) => {
                 if (error) throw error;
 
+=======
+
+            fs.readdir(source, (error, files) => {
+                if (error) throw error;
+
+>>>>>>> a3240cabe7ea46ec0f574c4a78cdecede2516964
                 files.forEach(file => copyToDist(path.join(source, file)));
             });
         }
@@ -116,6 +139,7 @@ function compileCodeBase() {
             .bundle()
             .on('error', (err) => console.log(`Error: ${err.message}`))
             .pipe(fs.createWriteStream(`${DIST_PATH}/app.js`));
+<<<<<<< HEAD
 
     // sass path variable
     let sassPath = `${DIST_PATH}/app.css`;
@@ -160,6 +184,22 @@ function copyDependencies() {
             }
 
             depHandler(data, 'bower_components');
+=======
+
+    // sass path variable
+    let sassPath = `${DIST_PATH}/app.css`;
+
+    // node-sass to complie the scss files to css
+    sass.render({
+        file: 'sass/main.scss',
+        outFile: sassPath,
+        outputStyle: 'compressed'
+    }, (err, res) => {
+        if (err) throw err;
+
+        fs.writeFile(sassPath, res.css, error => {
+            if (error) throw error;
+>>>>>>> a3240cabe7ea46ec0f574c4a78cdecede2516964
         });
     }
 
