@@ -1,8 +1,14 @@
+#application {
+  display: flex;
+  justify-content: space-between;
+}
+
 body {
   display: grid;
   min-height: 100vh;
   grid-template-rows: [header] auto auto 1fr [footer] auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji" "Segoe UI Emoji";
+  background: radial-gradient(#aaa, #eee);
 }
 
 header {
